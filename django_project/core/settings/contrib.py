@@ -10,6 +10,18 @@ PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
 PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 GRAPPELLI_INSTALLED = True
 
+GEONODE_CONTRIB_APPS = (
+    # GeoNode Contrib Apps
+    'geonode.contrib.dynamic',
+    'geonode.contrib.exif',
+    'geonode.contrib.favorite',
+    'geonode.contrib.geogig',
+    'geonode.contrib.geosites',
+    'geonode.contrib.nlp',
+    'geonode.contrib.slack',
+    'geonode.contrib.metadataxsl'
+)
+
 # Extra installed apps - grapelli needs to be added before others
 INSTALLED_APPS += (
     "django_comments",
@@ -45,6 +57,30 @@ INSTALLED_APPS += (
     'polymorphic',
     'guardian',
     'oauth2_provider',
+
+# GeoNode internal apps
+    'geonode.people',
+    'geonode.base',
+    'geonode.layers',
+    'geonode.maps',
+    'geonode.proxy',
+    'geonode.security',
+    'geonode.social',
+    'geonode.catalogue',
+    'geonode.documents',
+    'geonode.api',
+    'geonode.groups',
+    'geonode.services',
+
+    # QGIS Server Apps
+    # 'geonode_qgis_server',
+
+    # GeoServer Apps
+    # Geoserver needs to come last because
+    # it's signals may rely on other apps' signals.
+    'geonode.geoserver',
+    'geonode.upload',
+    'geonode.tasks',
 
 )
 

@@ -18,10 +18,6 @@ INSTALLED_APPS += (
     "geonode-client",
     "charts_app",
     "wfs_harvest",
-    'geonode.base',
-    'geonode.layers',
-    'geonode.services',
-    'geonode.maps'
 
 )
 
@@ -61,6 +57,7 @@ from .celery_setting import *  # noqa
 # default login url
 LOGIN_URL = '/account/login/'
 
+AUTH_USER_MODEL = os.getenv('AUTH_USER_MODEL', 'people.Profile')
 GEOSERVER_LOCATION = 'http://localhost:33308/geoserver/'
 GEOSERVER_PUBLIC_LOCATION = 'http://localhost:33308/geoserver/'
 
@@ -78,19 +75,19 @@ OGC_SERVER = {
         'PASSWORD': 'geoserver',
         'MAPFISH_PRINT_ENABLED': True,
         'PRINT_NG_ENABLED': True,
-        'GEONODE_SECURITY_ENABLED': True,
+        'GEONODE_SECURITY_ENABLED': False,
         'GEOGIG_ENABLED': False,
         'WMST_ENABLED': False,
         'BACKEND_WRITE_ENABLED': True,
         'WPS_ENABLED': False,
         # Set to name of database in DATABASES dictionary to enable
-        'DATASTORE': '',  # 'datastore',
+        'DATASTORE': 'datastore',  # 'datastore',
         'PG_GEOGIG': False,
         'TIMEOUT': 10  # number of seconds to allow for HTTP requests
     }
 }
 
-ALLOWED_DOCUMENT_TYPES = ["pdf"]
+ALLOWED_DOCUMENT_TYPES = ['doc', 'docx', 'xls', 'xlsx', 'pdf', 'zip', 'jpg', 'jpeg', 'tif', 'tiff', 'png', 'gif', 'txt']
 MISSING_THUMBNAIL = os.getenv(
     'MISSING_THUMBNAIL', 'geonode/img/missing_thumb.png'
 )
